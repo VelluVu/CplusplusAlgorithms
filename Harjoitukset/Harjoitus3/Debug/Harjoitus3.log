@@ -1,0 +1,5 @@
+﻿  Harjoitus3.cpp
+c:\users\veli-matti\desktop\opetus\c++algoritmit\harjoitukset\harjoitus3\harjoitus3.cpp(11): warning C4018: '<': signed/unsigned mismatch
+c:\users\veli-matti\desktop\opetus\c++algoritmit\harjoitukset\harjoitus3\harjoitus3.cpp(23): warning C4018: '<': signed/unsigned mismatch
+c:\users\veli-matti\desktop\opetus\c++algoritmit\harjoitukset\harjoitus3\harjoitus3.cpp(36): warning C4018: '<': signed/unsigned mismatch
+  Harjoitus3.vcxproj -> C:\Users\Veli-Matti\Desktop\Opetus\C++Algoritmit\Harjoitukset\Debug\Harjoitus3.exe
