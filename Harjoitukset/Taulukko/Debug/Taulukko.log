@@ -1,0 +1,27 @@
+﻿  Source.cpp
+c:\users\veli-matti\desktop\opetus\c++algoritmit\harjoitukset\taulukko\source.cpp(7): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\veli-matti\desktop\opetus\c++algoritmit\harjoitukset\taulukko\header.h(32): warning C4018: '<': signed/unsigned mismatch
+  c:\users\veli-matti\desktop\opetus\c++algoritmit\harjoitukset\taulukko\source.cpp(32): note: see reference to function template instantiation 'bool Find<int>(T *,int,T)' being compiled
+          with
+          [
+              T=int
+          ]
+c:\users\veli-matti\desktop\opetus\c++algoritmit\harjoitukset\taulukko\header.h(79): warning C4018: '<': signed/unsigned mismatch
+  c:\users\veli-matti\desktop\opetus\c++algoritmit\harjoitukset\taulukko\source.cpp(72): note: see reference to function template instantiation 'void PrintArray<int>(T *,int)' being compiled
+          with
+          [
+              T=int
+          ]
+c:\users\veli-matti\desktop\opetus\c++algoritmit\harjoitukset\taulukko\header.h(49): warning C4018: '>=': signed/unsigned mismatch
+  c:\users\veli-matti\desktop\opetus\c++algoritmit\harjoitukset\taulukko\source.cpp(73): note: see reference to function template instantiation 'void Insert<int>(T *,int,T,int)' being compiled
+          with
+          [
+              T=int
+          ]
+c:\users\veli-matti\desktop\opetus\c++algoritmit\harjoitukset\taulukko\header.h(64): warning C4018: '<': signed/unsigned mismatch
+  c:\users\veli-matti\desktop\opetus\c++algoritmit\harjoitukset\taulukko\source.cpp(100): note: see reference to function template instantiation 'void Remove<int>(T *,int,int)' being compiled
+          with
+          [
+              T=int
+          ]
+  Taulukko.vcxproj -> C:\Users\Veli-Matti\Desktop\Opetus\C++Algoritmit\Harjoitukset\Debug\Taulukko.exe

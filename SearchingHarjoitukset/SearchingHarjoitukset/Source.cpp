@@ -6,7 +6,8 @@ int main() {
 		väliltä 1…1000.Järjestä taulukon alkiot suuruusjärjestykseen(ks.std::sort).
 		Ohjelma kysyy tämän jälkeen käyttäjältä mitä arvoa etsitään(1..1000), ja tarkistaa binäärihaun
 		avulla löytyykö ko.arvoa.Ohjelman tulee myös tulostaa kuinka monta ”askelta” binäärihaku otti.
-		Aja ohjelma muutaman kerran.Kuinka monta askelta keskimäärin tarvittiin ?		*/
+		Aja ohjelma muutaman kerran.Kuinka monta askelta keskimäärin tarvittiin ?
+		*/
 
 	int taulu[1000];
 	int koko = 1000;
@@ -36,7 +37,8 @@ int main() {
 	std::cout << Find(random, taulu) << std::endl;
 
 	/* Laadi luokka Hash, joka osaa tallettaa merkkijonoja, niinikään merkkijono-tyyppisen avainarvon
-		perusteella. Luokalla tulee olla kaksi funktiota:	*/
+		perusteella. Luokalla tulee olla kaksi funktiota:
+	*/
 
 	Hash aseet;
 	aseet.Store("Vellu", "Mace");
