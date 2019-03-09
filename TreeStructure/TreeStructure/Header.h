@@ -9,50 +9,108 @@ class GameObject
 {
 public:
 	string _name;
+	int _key = 0;
 	double _coordinates[DIMENSION]; //x,y,z
+	double _absoluteCoordinates[DIMENSION];
+	GameObject* _vanhempi = nullptr;
 	GameObject* _vasenLapsi = nullptr;
 	GameObject* _oikeaLapsi = nullptr;
-	GameObject(string name, double x, double y, double z)
+	std::vector<GameObject*> _lapset;
+
+
+	GameObject(int key, string name, double x, double y, double z)
 	{
+		_key = key;
 		_name = name;
 		_coordinates[0] = x;
 		_coordinates[1] = y;
 		_coordinates[2] = z;
-
+		_absoluteCoordinates[0] = x;
+		_absoluteCoordinates[1] = y;
+		_absoluteCoordinates[2] = z;
+		_oikeaLapsi = nullptr;
+		_vasenLapsi = nullptr;
+		_vanhempi = nullptr;
 	}
-	void AddLapsi(GameObject* lapsi, bool vasen)
-	{
-		if (vasen) 
+
+	void PrintCord() {
+
+		cout << "Coords: ";
+		for (int i = 0; i < DIMENSION; i++)
 		{
-			_vasenLapsi = lapsi;
+
+			cout << _coordinates[i] << " ";
+			
+		}
+		cout << endl;
+		cout << "AbsCoords: ";
+
+		for (int i = 0; i < DIMENSION; i++)
+		{
+
+			cout << _absoluteCoordinates[i] << " ";
+
+		}
+		cout << endl;
+
+		cout << endl;
+		
+	}
+
+	void AddLapsi(GameObject* lapsi, bool oikea)
+	{
+		lapsi->_vanhempi = this;
+
+		if (oikea) 
+		{
+			_oikeaLapsi = lapsi;
+			_lapset.push_back(_oikeaLapsi);
 		}
 		else 
 		{
-			_oikeaLapsi = lapsi;
+			_vasenLapsi = lapsi;
+			_lapset.push_back(_vasenLapsi);
 		}
+
+		
 	}
 };
 
-void Traverse(GameObject* go)
+void TyhjaaArray(double* arr) {
+	for (int i = 0; i < DIMENSION; i++)
+	{
+		arr[i] = 0;
+	}
+}
+
+void Sum(double* arr, double* arr2)
 {
 
+	for (int i = 0; i < DIMENSION; i++)
+	{
+		arr[i] += arr2[i];
+	}
+}
+
+void Traverse(GameObject* go)
+{
 	
 	if (go == nullptr) 
 	{
+		cout << go->_name << endl;
+		go->PrintCord();
 		return;
 	}
 
 	cout << go->_name << endl;
 
-	for (int i = 0; i < DIMENSION; i++)
-	{
-		cout << go->_coordinates[i] << " ; ";
-	}
+	go->PrintCord();
 
-	cout << endl;
+	if(go->_vasenLapsi != nullptr)
+		Traverse(go->_vasenLapsi);
 
-	Traverse(go->_vasenLapsi);
-	Traverse(go->_oikeaLapsi);
+	if(go->_oikeaLapsi != nullptr)
+		Traverse(go->_oikeaLapsi);
 	
 }
 
@@ -63,24 +121,56 @@ absoluuttiset koordinaatit (ts. kaikkien vanhempi-solmujen koordinaatit tulee su
 lisätään itse lehtisolmun koordinaatit). Testaa.
 */
 
-void  PrintCoordinates(GameObject* go)
+void PrintCoordinates(GameObject* go, int syvyys)
 {
 	
-	if (go == nullptr)
+	if (go == nullptr || go->_vasenLapsi == nullptr && go->_oikeaLapsi == nullptr)
 	{
+		if (go != nullptr) 
+		{
+			syvyys++;
+			cout << "LEVEL: " << syvyys << endl;
+			cout << "Ollaan lehdessä " << go->_key << endl;
+			cout << go->_name << endl;
+			Sum(go->_absoluteCoordinates, go->_vanhempi->_absoluteCoordinates);
+			cout << "LEHDEN KOORDINAATIT" << endl;
+			go->PrintCord();
+			syvyys = 0;
+		}
+		else 
+		{
+			syvyys++;
+			cout << "LEVEL: " << syvyys << endl;
+			syvyys = 0;
+		}
+
 		return;
 	}
-
-	cout << go->_name << endl;
-
-	for (int i = 0; i < DIMENSION; i++)
+	else if (go->_vanhempi == nullptr || go->_key == 100) {
+		cout << "Ollaan Rootissa " << go->_key << endl;
+		syvyys = 0;
+		cout << "LEVEL: " << syvyys << endl;
+		cout << "GameObjectin Nimi: " << go->_name << endl;
+	}
+	else 
 	{
-		cout << go->_coordinates[i] << " ; ";
+		cout << "Ollaan childissa " << go->_key <<  endl;
+		syvyys++;
+		cout << "LEVEL: " << syvyys << endl;
+		cout << "GameObjectin Nimi: " << go->_name << endl;
 	}
 
-	cout << endl;
+	//Lisätään tämän obj absoluuttisiin koordinaatteihin vanhemman absoluuttiset koordinaatit
+	if (go->_vanhempi != nullptr && go != nullptr) 
+		Sum(go->_absoluteCoordinates, go->_vanhempi->_absoluteCoordinates);
+	
+	if (go->_vasenLapsi != nullptr && go != nullptr)
+		cout << "Mennään vasempaan : " << endl;
+		PrintCoordinates(go->_vasenLapsi, syvyys);
 
-	PrintCoordinates(go->_vasenLapsi);
-	PrintCoordinates(go->_oikeaLapsi);
+	if (go->_oikeaLapsi != nullptr && go != nullptr)
+		cout << "Mennään oikeaan : " << endl;
+		PrintCoordinates(go->_oikeaLapsi, syvyys);
+
 
 }
