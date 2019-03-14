@@ -14,7 +14,16 @@ int main()
 
 	cout << "Rekursiivinen : " << endl;
 	RekursiivinenFunktio(n, montakoKertaa);
+	cout << endl;
+	cout << "Fibonacci" << endl;
 
+	//Tulostetaan fibonacciluvut
+	for (int i = 0; i < montakoKertaa; i++)
+	{
+		cout << FibonacciLuvut(i) << " ";
+	}
+	
+	cout << endl;
 
 	system("Pause");
 	return 0;
